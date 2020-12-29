@@ -82,50 +82,8 @@ export default function SignIn() {
                   <IntlMessages id="page.signInButton" />
                 </Button>
               </div>
-
-              <p className="isoHelperText">
-                <IntlMessages id="page.signInPreview" />
-              </p>
             </form>
-            <div className="isoInputWrapper isoOtherLogin">
-              <Button
-                onClick={signInWithFacebook}
-                type="primary"
-                className="btnFacebook"
-              >
-                <IntlMessages id="page.signInFacebook" />
-              </Button>
-              <Button
-                onClick={signInWithGoogle}
-                type="primary"
-                className="btnGooglePlus"
-              >
-                <IntlMessages id="page.signInGooglePlus" />
-              </Button>
-
-              <Button
-                onClick={() => {
-                  Auth0.login();
-                }}
-                type="primary"
-                className="btnAuthZero"
-              >
-                <IntlMessages id="page.signInAuth0" />
-              </Button>
-
-              <FirebaseLoginForm
-                history={history}
-                login={token => dispatch(login(token))}
-              />
-            </div>
-            <div className="isoCenterComponent isoHelperWrapper">
-              <Link to="/forgotpassword" className="isoForgotPass">
-                <IntlMessages id="page.signInForgotPass" />
-              </Link>
-              <Link to="/signup">
-                <IntlMessages id="page.signInCreateAccount" />
-              </Link>
-            </div>
+            
           </div>
         </div>
       </div>

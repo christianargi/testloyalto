@@ -16,6 +16,8 @@ import IntlMessages from '@iso/components/utility/intlMessages';
 import Input from '@iso/components/CustomComponent/CustomInput';
 import actions from '@iso/redux/movies/actions';
 import { useParams } from 'react-router';
+import BlockUi from "react-block-ui";
+import 'react-block-ui/style.css';
 
 const {
     handleState,
@@ -41,45 +43,60 @@ const Detail = () => {
     };
     const gutter = 16;
     return (
-        <LayoutWrapper>
-            <PageHeader>
-                Movie Detail : {movies.title}
-            </PageHeader>
-            <Row style={rowStyle} gutter={gutter} justify="start">
-                <Col md={24} sm={24} xs={24} style={colStyle}>
-                    <Box>
-                        <ContentHolder>
-                            <Input
-                                id="title"
-                                name="title"
-                                label="Title"
-                                value={movies.title}
-                                onChange={(e) => handleState("title", e)}
-                                disabled={true}
-                            />
-                            <Input
-                                id="rating"
-                                name="rating"
-                                label="Rating"
-                                value={movies.rating}
-                                onChange={(e) => handleState("rating", e)}
-                                disabled={true}
-                            />
-                            <Input
-                                id="releaseDate"
-                                name="releaseDate"
-                                label="Release Date"
-                                value={movies.releaseDate}
-                                onChange={(e) => handleState("releaseDate", e)}
-                                disabled={true}
-                            />
-                            <h5>Overview</h5>
-                            <Textarea rows={6} value={movies.overview} disabled={true} />
-                        </ContentHolder>
-                    </Box>
-                </Col>
-            </Row>
-        </LayoutWrapper>
+        <BlockUi
+            tag="div"
+            blocking={movies.loading}
+            message={
+                <span>
+                    <div className="sk-folding-cube">
+                        <div className="sk-cube1 sk-cube" />
+                        <div className="sk-cube2 sk-cube" />
+                        <div className="sk-cube4 sk-cube" />
+                        <div className="sk-cube3 sk-cube" />
+                    </div>
+                </span>
+            }
+        >
+            <LayoutWrapper>
+                <PageHeader>
+                    Movie Detail : {movies.title}
+                </PageHeader>
+                <Row style={rowStyle} gutter={gutter} justify="start">
+                    <Col md={24} sm={24} xs={24} style={colStyle}>
+                        <Box>
+                            <ContentHolder>
+                                <Input
+                                    id="title"
+                                    name="title"
+                                    label="Title"
+                                    value={movies.title}
+                                    onChange={(e) => handleState("title", e)}
+                                    disabled={true}
+                                />
+                                <Input
+                                    id="rating"
+                                    name="rating"
+                                    label="Rating"
+                                    value={movies.rating}
+                                    onChange={(e) => handleState("rating", e)}
+                                    disabled={true}
+                                />
+                                <Input
+                                    id="releaseDate"
+                                    name="releaseDate"
+                                    label="Release Date"
+                                    value={movies.releaseDate}
+                                    onChange={(e) => handleState("releaseDate", e)}
+                                    disabled={true}
+                                />
+                                <h5>Overview</h5>
+                                <Textarea rows={6} value={movies.overview} disabled={true} />
+                            </ContentHolder>
+                        </Box>
+                    </Col>
+                </Row>
+            </LayoutWrapper>
+        </BlockUi>
     );
 }
 

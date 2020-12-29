@@ -30,7 +30,7 @@ export function* getMovieList(actions) {
             ...row
         }))
         if (response != undefined) {
-            // yield put({ type: SET_LOADER, payload: false })
+            yield put({ type: SET_LOADER, payload: false })
             yield put({ type: SET_MOVIE_LIST, payload: results })
             yield put({
                 type: SET_PAGINATION,
@@ -40,7 +40,7 @@ export function* getMovieList(actions) {
             })
         }
         else {
-            // yield put({ type: SET_LOADER, payload: false })
+            yield put({ type: SET_LOADER, payload: false })
             yield put({ type: SET_MOVIE_LIST, payload: [] })
         }
     }
@@ -51,12 +51,14 @@ export function* getMovieList(actions) {
 
 export function* getMovieDetails(actions) {
     try {
-        const moviesState = yield select(movies)
+        yield put({ type: SET_LOADER, payload: true })
         let response = yield call(GET, "https://api.themoviedb.org/3/movie/" + actions.id + "?api_key=2fccde01a371b106b09a241d6d1d5b49")
         if (response != undefined) {
+            yield put({ type: SET_LOADER, payload: false })
             yield put({ type: SET_MOVIE_DETAIL, payload: response })
         }
         else {
+            yield put({ type: SET_LOADER, payload: false })
             yield put({ type: SET_MOVIE_DETAIL, payload: [] })
         }
     }
@@ -67,11 +69,14 @@ export function* getMovieDetails(actions) {
 
 export function* getMovieGenre() {
     try {
+        yield put({ type: SET_LOADER, payload: true })
         let response = yield call(GET, "https://api.themoviedb.org/3/genre/movie/list?api_key=2fccde01a371b106b09a241d6d1d5b49")
         if (response != undefined) {
+            yield put({ type: SET_LOADER, payload: false })
             yield put({ type: SET_GENRE, payload: response.genres })
         }
         else {
+            yield put({ type: SET_LOADER, payload: false })
             yield put({ type: SET_GENRE, payload: [] })
         }
     }

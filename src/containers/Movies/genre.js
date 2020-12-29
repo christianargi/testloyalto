@@ -9,6 +9,7 @@ import LayoutWrapper from '@iso/components/utility/layoutWrapper.js';
 import ContentHolder from '@iso/components/utility/contentHolder';
 import actions from '@iso/redux/movies/actions';
 import BlockUi from "react-block-ui";
+import 'react-block-ui/style.css';
 
 const {
     getGenre,
@@ -78,7 +79,6 @@ const Genre = () => {
                 </Row>
             </LayoutWrapper>
         </BlockUi>
-
     );
 }
 
